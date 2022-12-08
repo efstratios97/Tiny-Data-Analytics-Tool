@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="TinyDataAnalyticsTool",                     # This is the name of the package
-    version="0.0.1",                        # The initial release version
+    version="0.1.0",                        # The initial release version
     # Full name of the author
     author="Efstratios Pahis",
     description="Disclaimer: This is an old Project from when I started learning Python from 2019 (not the best written code)!! A GUI for flexibly organizing Data Analytics related tasks/functions and adding custom User Input Fields if needed.",
@@ -25,5 +25,6 @@ setuptools.setup(
     # Directory of the source code of the package
     url="https://github.com/efstratios97/Tiny-Data-Analytics-Tool",
     install_requires=["pandas",
-                      "matplotlib"]                     # Install other dependencies if any
+                      "matplotlib",
+                      "openpyxl"]                     # Install other dependencies if any
 )

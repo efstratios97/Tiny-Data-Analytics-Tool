@@ -1,2 +1,5 @@
 tinydataanalyticsenv
 __pycache__
+TinyDataAnalyticsTool.egg-info
+build
+dist

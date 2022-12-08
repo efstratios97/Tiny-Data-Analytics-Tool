@@ -70,7 +70,7 @@ That said... This is a tiny tool encompassing a GUI for flexibly organizing Data
 ```python
 
 import pandas as pd
-from TinyDataAnalyticsTool import TinyDataAnalyticsTool
+from tiny_data_analytics_tool.TinyDataAnalyticsTool import TinyDataAnalyticsTool
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use("TkAgg")

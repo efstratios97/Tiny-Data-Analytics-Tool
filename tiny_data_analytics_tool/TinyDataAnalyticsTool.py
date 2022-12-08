@@ -6,7 +6,7 @@ Created on Wed Mar 18 10:48:19 2020
 """
 
 import tkinter as tk
-import Settings as st
+import tiny_data_analytics_tool.Settings as st
 import pandas as pd
 
 class TinyDataAnalyticsTool:
@@ -168,13 +168,17 @@ class TinyDataAnalyticsTool:
                 self.__dict_paramaters[param][st.gui_tk_variable] = tk.StringVar(self.tk_master)
                 self.__dict_paramaters[param][st.gui_tk_variable].set(st.gui_tk_alle)
                 self.__dict_paramaters[param][st.gui_tk_variable].trace_add('write', lambda var_name = self.__dict_paramaters[param][st.gui_tk_variable],*_, var=param: self.__option_changed(var_name, var))
-                if st.represents_int(self.final_df_for_options_displays[param].iloc[0]):
-                    if isinstance(self.final_df_for_options_displays[param].iloc[0], float):
-                       self.final_df_for_options_displays[param] = pd.to_numeric(self.final_df_for_options_displays[param], errors='coerce')
-                       self.final_df_for_options_displays = self.final_df_for_options_displays.dropna(subset=[param])
-                       self.final_df_for_options_displays[param] = self.final_df_for_options_displays[param].apply(lambda x: int(x))
-                    self.__dict_paramaters[param][st.gui_tk_options] = st.prepend(st.gui_tk_alle, sorted(set([int(val) for val in self.final_df_for_options_displays[param] if str(val).isdigit()]))) 
-                else:
+                try:
+                    if st.represents_int(self.final_df_for_options_displays[param].iloc[0]):
+                        if isinstance(self.final_df_for_options_displays[param].iloc[0], float):
+                            self.final_df_for_options_displays[param] = pd.to_numeric(self.final_df_for_options_displays[param], errors='coerce')
+                            self.final_df_for_options_displays = self.final_df_for_options_displays.dropna(subset=[param])
+                            self.final_df_for_options_displays[param] = self.final_df_for_options_displays[param].apply(lambda x: int(x))
+                            self.__dict_paramaters[param][st.gui_tk_options] = st.prepend(st.gui_tk_alle, sorted(set([int(val) for val in self.final_df_for_options_displays[param] if str(val).isdigit()]))) 
+                    else:
+                        self.__dict_paramaters[param][st.gui_tk_options] = st.prepend(st.gui_tk_alle, sorted(set([val for val in self.final_df_for_options_displays[param]]))) 
+                except Exception as e:
+                    print(e)
                     self.__dict_paramaters[param][st.gui_tk_options] = st.prepend(st.gui_tk_alle, sorted(set([val for val in self.final_df_for_options_displays[param]]))) 
                 self.__dict_paramaters[param][st.gui_tk_w] = tk.OptionMenu(self.tk_master, self.__dict_paramaters[param][st.gui_tk_variable], *self.__dict_paramaters[param][st.gui_tk_options])
                 self.__dict_paramaters[param][st.gui_tk_w].grid(row=position_row, column=1)

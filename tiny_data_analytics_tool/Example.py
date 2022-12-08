@@ -6,7 +6,7 @@ Created on Mon Mar 23 09:31:17 2020
 """
 
 import pandas as pd
-from TinyDataAnalyticsTool import TinyDataAnalyticsTool
+from tiny_data_analytics_tool.TinyDataAnalyticsTool import TinyDataAnalyticsTool
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use("TkAgg")
